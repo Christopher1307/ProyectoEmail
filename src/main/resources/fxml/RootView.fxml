@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="root" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
       <ColumnConstraints hgrow="NEVER" maxWidth="135.0" minWidth="10.0" prefWidth="119.0" />
     <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="79.80000000000001" />
@@ -29,78 +29,78 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
-      <Label prefHeight="27.0" prefWidth="111.0" text="Servidor SMPT:">
+      <Label fx:id="SMPT" prefHeight="27.0" prefWidth="111.0" text="ServidorSMPT:">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label prefHeight="27.0" prefWidth="113.0" text="Usar Conexion SSL:" GridPane.rowIndex="1">
+      <Label fx:id="SSL" prefHeight="27.0" prefWidth="113.0" text="Usar ConexionSSL:" GridPane.rowIndex="1">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label prefHeight="27.0" prefWidth="116.0" text="Remitente (From):" GridPane.rowIndex="2">
+      <Label fx:id="Remitente" prefHeight="27.0" prefWidth="116.0" text="RemitenteFrom:" GridPane.rowIndex="2">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label prefHeight="27.0" prefWidth="116.0" text="Destinatario (To):" GridPane.rowIndex="3">
+      <Label fx:id="Destinatario" prefHeight="27.0" prefWidth="116.0" text="DestinatarioTo:" GridPane.rowIndex="3">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label prefHeight="27.0" prefWidth="111.0" text="Asunto (Subject):" GridPane.rowIndex="4">
+      <Label fx:id="Asunto" prefHeight="27.0" prefWidth="111.0" text="AsuntoSubject:" GridPane.rowIndex="4">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <TextArea prefHeight="238.0" prefWidth="452.0" promptText="Mensaje" GridPane.columnSpan="5" GridPane.rowIndex="5">
+      <TextArea fx:id="Email" prefHeight="238.0" prefWidth="452.0" promptText="Mensaje" GridPane.columnSpan="5" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextArea>
       <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Button mnemonicParsing="false" text="Enviar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Button fx:id="EnviarButton" mnemonicParsing="false" text="Enviar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" text="Vaciar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Button fx:id="VaciarButton" mnemonicParsing="false" text="Vaciar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" text="Cerrar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+      <Button fx:id="CerrarButton" mnemonicParsing="false" text="Cerrar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
          </GridPane.margin>
       </Button>
-      <TextField prefHeight="26.0" prefWidth="287.0" promptText="Nombre o IP del servidor" GridPane.columnIndex="1" GridPane.columnSpan="2">
+      <TextField fx:id="SmptTextField" prefHeight="26.0" prefWidth="287.0" promptText="Nombre o IP del servidor" GridPane.columnIndex="1" GridPane.columnSpan="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <TextField prefHeight="26.0" prefWidth="79.0" promptText="Puerto" GridPane.columnIndex="4">
+      <TextField fx:id="PuertoTextField" prefHeight="26.0" prefWidth="79.0" promptText="Puerto" GridPane.columnIndex="4">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <TextField prefHeight="26.0" prefWidth="274.0" promptText="Email del remitente" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <TextField fx:id="RemitenteTextField" prefHeight="26.0" prefWidth="274.0" promptText="Email del remitente" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <TextField promptText="Email del destinatario" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="3">
+      <TextField fx:id="DestinatarioTiextField" promptText="Email del destinatario" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <TextField promptText="Asunto del mensaje" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4">
+      <TextField fx:id="AsuntoTextField" promptText="Asunto del mensaje" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <PasswordField promptText="Contraseña" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <PasswordField fx:id="ContraseñaPasswordField" promptText="Contraseña" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
