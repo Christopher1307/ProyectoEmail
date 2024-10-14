@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+      <ColumnConstraints hgrow="NEVER" maxWidth="135.0" minWidth="10.0" prefWidth="119.0" />
+    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="79.80000000000001" />
+    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="165.59999999999997" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" prefWidth="12.79998779296875" />
+      <ColumnConstraints hgrow="NEVER" maxWidth="104.20003662109377" minWidth="10.0" prefWidth="88.00001220703126" />
+      <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+  </rowConstraints>
+   <children>
+      <Label prefHeight="27.0" prefWidth="111.0" text="Servidor SMPT:">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label prefHeight="27.0" prefWidth="113.0" text="Usar Conexion SSL:" GridPane.rowIndex="1">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label prefHeight="27.0" prefWidth="116.0" text="Remitente (From):" GridPane.rowIndex="2">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label prefHeight="27.0" prefWidth="116.0" text="Destinatario (To):" GridPane.rowIndex="3">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label prefHeight="27.0" prefWidth="111.0" text="Asunto (Subject):" GridPane.rowIndex="4">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <TextArea prefHeight="238.0" prefWidth="452.0" promptText="Mensaje" GridPane.columnSpan="5" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextArea>
+      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" text="Enviar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" text="Vaciar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" text="Cerrar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+         </GridPane.margin>
+      </Button>
+      <TextField prefHeight="26.0" prefWidth="287.0" promptText="Nombre o IP del servidor" GridPane.columnIndex="1" GridPane.columnSpan="2">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField prefHeight="26.0" prefWidth="79.0" promptText="Puerto" GridPane.columnIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField prefHeight="26.0" prefWidth="274.0" promptText="Email del remitente" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField promptText="Email del destinatario" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField promptText="Asunto del mensaje" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextField>
+      <PasswordField promptText="Contraseña" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </PasswordField>
+   </children>
+</GridPane>
