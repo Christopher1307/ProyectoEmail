@@ -1,174 +1,92 @@
 package dad.Controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
-
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class RootController implements Initializable {
+public class RootController {
 
     @FXML
-    private Label Asunto;
-
-    @FXML
-    private TextField AsuntoTextField;
-
-    @FXML
-    private Button CerrarButton;
+    private TextField SmptTextField, PuertoTextField, RemitenteTextField, DestinatarioTextField, AsuntoTextField;
 
     @FXML
     private PasswordField ContraseñaPasswordField;
 
     @FXML
-    private Label Destinatario;
-
-    @FXML
-    private TextField DestinatarioTiextField;
-
-    @FXML
-    private TextArea Email;
-
-    @FXML
-    private Button EnviarButton;
-
-    @FXML
-    private TextField PuertoTextField;
-
-    @FXML
-    private Label Remitente;
-
-    @FXML
-    private TextField RemitenteTextField;
-
-    @FXML
-    private Label SMPT;
-
-    @FXML
-    private Label SSL;
-
-    @FXML
-    private TextField SmptTextField;
-
-    @FXML
-    private Button VaciarButton;
+    private TextArea MensajeTextArea;
 
     @FXML
     private CheckBox SSLCheckBox;
 
     @FXML
-    private GridPane root = new GridPane();  // El contenedor raíz
+    private Button EnviarButton, VaciarButton, CerrarButton;
 
-    public RootController() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/RootView.fxml"));
-            loader.setController(this);
-            loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    @FXML
+    private GridPane root;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Acción del botón Enviar
-        EnviarButton.setOnAction(event -> {
-            enviarCorreo();
-
-        });
-
-        // Acción del botón Vaciar
+    @FXML
+    private void initialize() {
+        EnviarButton.setOnAction(event -> enviarCorreo());
         VaciarButton.setOnAction(event -> vaciarCampos());
-
-        // Acción del botón Cerrar
         CerrarButton.setOnAction(event -> cerrarAplicacion());
     }
 
-    // Método para obtener el GridPane root
-    public GridPane getRoot() {
-        return root;
-    }
-
-    // Método para enviar el correo electrónico
     private void enviarCorreo() {
         try {
-            // Configuramos el correo
             HtmlEmail email = new HtmlEmail();
-            email.setHostName(SmptTextField.getText()); // Servidor SMTP
-            email.setSmtpPort(Integer.parseInt(PuertoTextField.getText())); // Puerto SMTP
-            email.setAuthentication(RemitenteTextField.getText(), ContraseñaPasswordField.getText()); // Autenticación
-            email.setFrom(RemitenteTextField.getText()); // Remitente
-            email.addTo(DestinatarioTiextField.getText()); // Destinatario
-            email.setSubject(AsuntoTextField.getText()); // Asunto
-            email.setHtmlMsg(Email.getText()); // Mensaje en HTML
+            email.setHostName(SmptTextField.getText());
+            email.setSmtpPort(Integer.parseInt(PuertoTextField.getText()));
+
+            // Autenticación del remitente
+            email.setAuthentication(RemitenteTextField.getText(), ContraseñaPasswordField.getText());
 
             // Configuración de SSL
-            if (SSLCheckBox.isSelected()) {
-                email.setSSLOnConnect(true); // SSL activado
-            }
+            email.setSSLOnConnect(SSLCheckBox.isSelected());
 
-            // Depuración
-            System.out.println("Enviando correo a: " + DestinatarioTiextField.getText());
-            System.out.println("Servidor SMTP: " + SmptTextField.getText());
-            System.out.println("Puerto SMTP: " + PuertoTextField.getText());
+            // Configurar remitente, destinatario, asunto y mensaje
+            email.setFrom(RemitenteTextField.getText());
+            email.addTo(DestinatarioTextField.getText());
+            email.setSubject(AsuntoTextField.getText());
+            email.setHtmlMsg(MensajeTextArea.getText());
 
-            // Enviar correo
+            // Enviar el correo
             email.send();
 
-            // Mostrar alerta de éxito
-            mostrarAlertaExito(DestinatarioTiextField.getText());
+            // Alerta de éxito
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Correo enviado exitosamente a " + DestinatarioTextField.getText());
 
-        } catch (EmailException e) {
-            // Mostrar alerta de error
-            mostrarAlertaError("Error al enviar el correo: " + e.getMessage());
+        } catch (EmailException | NumberFormatException e) {
+            // Manejo de errores
+            mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo enviar el correo: " + e.getMessage());
         }
     }
 
-    // Método para mostrar una alerta de éxito (mensaje enviado)
-    private void mostrarAlertaExito(String destinatario) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Mensaje Enviado");
-        alert.setHeaderText("Correo enviado con éxito");
-        alert.setContentText("El mensaje ha sido enviado a: " + destinatario);
-        alert.showAndWait();
-    }
-
-    // Método para mostrar una alerta de error (fallo en el envío)
-    private void mostrarAlertaError(String mensajeError) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error al enviar el correo");
-        alert.setHeaderText("No se pudo enviar el correo");
-        alert.setContentText("Error: " + mensajeError + "\nPor favor verifica tu configuración.");
-        alert.showAndWait();
-    }
-
-    // Método para vaciar los campos de texto
     private void vaciarCampos() {
         SmptTextField.clear();
         PuertoTextField.clear();
         RemitenteTextField.clear();
         ContraseñaPasswordField.clear();
-        DestinatarioTiextField.clear();
+        DestinatarioTextField.clear();
         AsuntoTextField.clear();
-        Email.clear();
+        MensajeTextArea.clear();
         SSLCheckBox.setSelected(false);
     }
 
-    // Método para cerrar la aplicación
     private void cerrarAplicacion() {
         System.exit(0);
     }
-    // Método para manejar errores específicos de EmailException
-    private void manejarErrorEmailException(String mensajeError) {
-        mostrarAlertaError("Error al enviar el correo: " + mensajeError);
+
+    private void mostrarAlerta(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
+    public GridPane getRoot() {
+        return root;
+    }
 }
